@@ -84,7 +84,13 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: Shoot
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3514313237645509527}
   m_Solo: 0
@@ -238,7 +244,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Jump
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5268053708677291740}
   m_Solo: 0
@@ -248,8 +257,8 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.875
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -312,6 +321,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: Idle
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -332,7 +347,13 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: Jump
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3514313237645509527}
   m_Solo: 0
@@ -342,8 +363,8 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.70000005
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -358,7 +379,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -3514313237645509527}
-    m_Position: {x: 290, y: 120, z: 0}
+    m_Position: {x: 290, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4207396800639402878}
     m_Position: {x: 550, y: 10, z: 0}
@@ -367,7 +388,7 @@ AnimatorStateMachine:
     m_Position: {x: 90, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1075518088022400420}
-    m_Position: {x: 630, y: 140, z: 0}
+    m_Position: {x: 570, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2315221769036881330}
     m_Position: {x: 290, y: 210, z: 0}
@@ -397,7 +418,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: Movement
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4207396800639402878}
   m_Solo: 0
@@ -407,8 +431,8 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.875
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -445,7 +469,13 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Shoot
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9191773395049988434}
   m_Solo: 0
@@ -489,7 +519,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3514313237645509527}
   m_Solo: 0
@@ -499,8 +532,8 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.70000005
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
