@@ -26,7 +26,10 @@ public class PlayerInputs : MonoBehaviour
 
         if (_isWalking) _myAnim.SetBool("Run", true);
         else _myAnim.SetBool("Run", false);
-        //if (Input.GetKeyDown(KeyCode.Space)) Jump();
+
+        if (Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (Input.GetKeyDown(KeyCode.R)) Reload();
+        if (Input.GetKeyDown(KeyCode.Mouse0)) Shoot();
 
     }
     void FixedUpdate()
@@ -53,5 +56,16 @@ public class PlayerInputs : MonoBehaviour
     void Jump()
     {
         _myRb.AddForce(Vector3.up * _jumpForce, ForceMode.VelocityChange);
+        _myAnim.SetTrigger("Jump");
+    }
+
+    void Reload()
+    {
+        _myAnim.SetTrigger("Reload");
+    }
+
+    void Shoot()
+    {
+        _myAnim.SetBool("Shoot", true);
     }
 }
