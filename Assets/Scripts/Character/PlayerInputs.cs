@@ -6,8 +6,11 @@ public class PlayerInputs : MonoBehaviour
 {
     [SerializeField] float _movementSpeed;
     [SerializeField] float _jumpForce;
+    [SerializeField] float _shootSpeed;
     [SerializeField] Animator _myAnim;
     [SerializeField] Rigidbody _myRb;
+    [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] Transform _projectileSpawnPoint;
 
     float _horizontalInput;
     float _verticalInput;
@@ -39,7 +42,7 @@ public class PlayerInputs : MonoBehaviour
 
     void Movement()
     {
-        Vector3 movement = new Vector3(-_horizontalInput, 0f, -_verticalInput);
+        Vector3 movement = new Vector3(_horizontalInput, 0f, _verticalInput);
         movement.Normalize();
 
         _myRb.velocity = movement * _movementSpeed;
@@ -67,5 +70,8 @@ public class PlayerInputs : MonoBehaviour
     void Shoot()
     {
         _myAnim.SetBool("Shoot", true);
+        Instantiate(_bulletPrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
+        Rigidbody projectileRb = _bulletPrefab.GetComponent<Rigidbody>();
+        projectileRb.velocity = _projectileSpawnPoint.forward * _shootSpeed;
     }
 }
