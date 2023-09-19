@@ -4,10 +4,13 @@ using UnityEngine;
 using Fusion;
 using Fusion.Sockets;
 using System;
+using SharedMode;
 
 public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] NetworkPlayer _playerPrefab;
+
+    SharedMode.NetworkCharacterController _characterController;
 
     public void OnConnectedToServer(NetworkRunner runner) //Spawn del Player
     {
@@ -15,9 +18,12 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
                 runner.Spawn(_playerPrefab, Vector3.zero, Quaternion.identity, runner.LocalPlayer);
     }
 
-    public void OnInput(NetworkRunner runner, NetworkInput input)
+    public void OnInput(NetworkRunner runner, NetworkInput input) //Inputs
     {
+        if (!NetworkPlayer.Local) return;
 
+        if (!_characterController) _characterController = NetworkPlayer.Local.GetComponent<SharedMode.NetworkCharacterController>(); //Si no lo tengo, lo obtengo
+        else input.Set(_characterController.GetLocalInputs()); //Si lo tengo, llamo al metodo para obtener los inputs
     }
 
     #region Callbacks sin usar
