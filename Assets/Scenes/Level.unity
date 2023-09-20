@@ -391,7 +391,9 @@ MonoBehaviour:
   - {fileID: 748669859}
   - {fileID: 151916783}
   - {fileID: 2010206497}
-  _flagPrefab: {fileID: 2953610533794130522, guid: 4b343f4307185d3488e32658988e754d, type: 3}
+  _flagPrefab: {fileID: 6584943094132862721, guid: e916fccdd879ab149855170d29940298, type: 3}
+  isCaptured:
+    _value: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
