@@ -9,19 +9,30 @@ public class SpawnPoints : NetworkBehaviour
     [SerializeField] GameObject _flagPrefab;
 
     int _lastSpawnPoint;
+    int _currentSpawnPoint;
 
+    public NetworkBool isCaptured;
+    
     public override void Spawned()
     {
-        var currentSpawn = Random.Range(0, _spawnPoints.Length);
+        _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
+        _lastSpawnPoint = _currentSpawnPoint;
 
-        _lastSpawnPoint = currentSpawn;
-
-        Debug.Log(_lastSpawnPoint);
-        Runner.Spawn(_flagPrefab, _spawnPoints[currentSpawn].position, transform.rotation);
+        Runner.Spawn(_flagPrefab, _spawnPoints[_currentSpawnPoint].position, transform.rotation);
     }
 
     public override void FixedUpdateNetwork()
     {
-        base.FixedUpdateNetwork();
+        if(isCaptured) Spawn();
+    }
+
+    void Spawn()
+    {
+        _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
+
+        if (_currentSpawnPoint == _lastSpawnPoint) return;
+
+        _lastSpawnPoint = _currentSpawnPoint;
+        Runner.Spawn(_flagPrefab, _spawnPoints[_currentSpawnPoint].position, transform.rotation);
     }
 }
