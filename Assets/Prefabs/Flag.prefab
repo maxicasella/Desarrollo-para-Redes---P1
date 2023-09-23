@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b8ab382e164dc14fa927b0dc789b34a, type: 2}
     - target: {fileID: 919132149155446097, guid: d7cd7412d5e2c1b4a9921d6f0d3a6987, type: 3}
       propertyPath: m_Name
-      value: Flag Variant
+      value: Flag
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7cd7412d5e2c1b4a9921d6f0d3a6987, type: 3}
@@ -79,6 +79,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.0737305, y: 6.554678, z: 1.1949054}
   m_Center: {x: -0.93941265, y: 3.1799765, z: 0}
+--- !u!114 &-5440853424020594676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584943094132862721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba890f4f852c884f83befa4374ef3c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _score: 50
 --- !u!114 &2008457223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,5 +114,6 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: e916fccdd879ab149855170d29940298
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: -5440853424020594676}
   SimulationBehaviours: []

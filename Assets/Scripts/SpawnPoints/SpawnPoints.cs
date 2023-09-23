@@ -23,10 +23,10 @@ public class SpawnPoints : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        if(isCaptured) Spawn();
+        if(isCaptured) StartCoroutine(SpawnCorroutine());
     }
 
-    void Spawn()
+    public void Spawn()
     {
         _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
 
@@ -34,5 +34,14 @@ public class SpawnPoints : NetworkBehaviour
 
         _lastSpawnPoint = _currentSpawnPoint;
         Runner.Spawn(_flagPrefab, _spawnPoints[_currentSpawnPoint].position, transform.rotation);
+    }
+
+    IEnumerator SpawnCorroutine()
+    {
+        Spawn();
+
+        yield return new WaitForSeconds(0.01f);
+
+        if(isCaptured) isCaptured = false;
     }
 }
