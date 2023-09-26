@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 4.499793, z: -2.0019298}
+  m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -151,7 +151,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583294888}
-  m_LocalRotation: {x: 0.31068903, y: 0.62179947, z: -0.29458705, w: 0.65578675}
+  m_LocalRotation: {x: 0.008554234, y: 0.9888759, z: -0.062880516, w: 0.13452618}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -229,7 +229,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796182448}
-  m_LocalRotation: {x: 0.29870918, y: 0.627055, z: -0.28322807, w: 0.6613295}
+  m_LocalRotation: {x: 0.006105856, y: 0.9898561, z: -0.044882976, w: 0.13465953}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 4.499793, z: -2.0019298}
+  m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448576885}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9974977, y: 4.499793, z: -0.13313802}
+  m_LocalPosition: {x: -1.1864488, y: 2.5, z: 4.8571944}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -484,14 +484,14 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.9996644
+    Value: 0.5
     m_SpeedMode: 0
     m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: 0
     m_MaxValue: 1
     m_Wrap: 0
@@ -511,8 +511,8 @@ MonoBehaviour:
     Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 200
-    m_AccelTime: 0.2
-    m_DecelTime: 0.2
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -573,7 +573,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579321775}
-  m_LocalRotation: {x: 0.28666252, y: 0.63209, z: -0.2718058, w: 0.6666397}
+  m_LocalRotation: {x: 0.0036619327, y: 0.9905074, z: -0.026918162, w: 0.13474812}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 4.499793, z: -2.0019298}
+  m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -985,12 +985,12 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _movementSpeed: 10
   _jumpForce: 3
-  _shootSpeed: 5
+  _shootSpeed: 10
   _cooldown: 0.15
-  _life: 100
-  _auraTime: 0.3
+  _life: 200
+  _auraTime: 0.4
   _auraTimer: 0
-  _auracooldown: 0.2
+  _auracooldown: 1
   _myAnim: {fileID: 4565532791819322006}
   _myRb: {fileID: 4565532791819322001}
   _bulletPrefab: {fileID: 546876089636661021, guid: 4a880d01f8900354097bf328f67e7fde, type: 3}
@@ -998,8 +998,7 @@ MonoBehaviour:
   _shootParticles: {fileID: 0}
   _auraObject: {fileID: 7073040104653343865}
   _aura: {fileID: 6042826072091998917}
-  aura:
-    _value: 0
+  aura: 0
 --- !u!1 &6841032191428018890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   myAnim: {fileID: 4597399857751094381}
-  _player: {fileID: 7632718111330029910}
 --- !u!114 &6081971588592815233
 MonoBehaviour:
   m_ObjectHideFlags: 0

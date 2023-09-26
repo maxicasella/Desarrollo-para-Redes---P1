@@ -54,6 +54,8 @@ public class PlayerInputs : NetworkBehaviour
             {
                _aura.AuraOff();
                 aura = false;
+                AuraReload();
+                _auraTimer = 0;
             }
         }
 

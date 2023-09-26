@@ -14,6 +14,5 @@ public class Aura : NetworkBehaviour
     {
         myAnim.Animator.SetBool("AuraOff", true);
         this.gameObject.SetActive(false);
-        myAnim.Animator.SetBool("AuraOff", false);
     }
 }

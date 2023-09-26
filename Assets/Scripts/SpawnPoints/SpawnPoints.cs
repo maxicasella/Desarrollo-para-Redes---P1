@@ -30,7 +30,7 @@ public class SpawnPoints : NetworkBehaviour
     {
         _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
 
-        if (_currentSpawnPoint == _lastSpawnPoint) return;
+        if (_currentSpawnPoint == _lastSpawnPoint) _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
 
         _lastSpawnPoint = _currentSpawnPoint;
         Runner.Spawn(_flagPrefab, _spawnPoints[_currentSpawnPoint].position, transform.rotation);
