@@ -130,8 +130,7 @@ MonoBehaviour:
   GenerateAllMipmaps: 1
   OutputMaterial: {fileID: 2100000, guid: 956c46b153258704fb14389d66318fc1, type: 2}
   DefaultPreset: " <sbspreset pkgurl=\"pkg://desert_sand\" label=\"\" >\n  <presetinput
-    identifier=\"$outputsize\" uid=\"4240231977\" type=\"8\" value=\"10,10\" />\n
-    </sbspreset>\n"
+    identifier=\"$outputsize\" uid=\"4240231977\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
   MaterialShader: Standard
   RenderTextures: 0
   OutputRemaped: 0
