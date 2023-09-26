@@ -11,18 +11,23 @@ public class Bullet : NetworkBehaviour
 
     [SerializeField] GameObject _explotion;
 
+    float _time;
     NetworkRigidbody _rb;
 
-    void Start()
+
+    public override void Spawned()
     {
         _rb = GetComponent<NetworkRigidbody>();
-        Destroy(gameObject, _lifetime);
-    }
 
+    }
     public override void FixedUpdateNetwork()
     {
+        _time += Time.deltaTime;
+
         Vector3 movement = transform.forward * _speed;
         _rb.Rigidbody.velocity = movement;
+
+        if (_time >= _lifetime) Runner.Despawn(Object);
     }
 
     private void OnTriggerEnter(Collider other)
