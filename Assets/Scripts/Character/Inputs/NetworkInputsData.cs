@@ -10,4 +10,5 @@ public struct NetworkInputsData : INetworkInput
     public NetworkBool isFiring;
     public NetworkBool isJumping;
     public NetworkBool isReloading;
+    public NetworkBool auraOn;
 }

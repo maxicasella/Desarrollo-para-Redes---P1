@@ -10,16 +10,24 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] float _shootSpeed;
     [SerializeField] float _cooldown;
     [SerializeField] float _life;
+    [SerializeField] float _auraTime;
+    [SerializeField] float _auraTimer;
+    [SerializeField] float _auracooldown;
 
     [SerializeField] NetworkMecanimAnimator _myAnim;
     [SerializeField] NetworkRigidbody _myRb;
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] Transform _projectileSpawnPoint;
     [SerializeField] ParticleSystem _shootParticles;
+    [SerializeField] GameObject _auraObject;
+    [SerializeField] Aura _aura;
 
     NetworkInputsData _inputs;
+    public bool aura;
 
     [Networked(OnChanged = nameof(OnFiringChanged))] bool _isFiring { get; set; }
+
+    [Networked(OnChanged = nameof(AuraChanged))] bool _isAura { get; set; }
 
     bool _isWalking;
     float _lastFiringTime;
@@ -35,6 +43,18 @@ public class PlayerInputs : NetworkBehaviour
             if (_inputs.isFiring) Shoot();
             if (_inputs.isReloading) Reload();
             if (_inputs.isJumping) Jump();
+            if (_inputs.auraOn) AuraShield();
+        }
+
+        if (aura)
+        {
+            _auraTimer += Time.deltaTime;
+
+            if (_auraTimer >= _auraTime)
+            {
+               _aura.AuraOff();
+                aura = false;
+            }
         }
 
         if (_isWalking) _myAnim.Animator.SetBool("Run", true);
@@ -50,6 +70,34 @@ public class PlayerInputs : NetworkBehaviour
         yield return new WaitForSeconds(_cooldown);
 
         _isFiring = false;
+    }
+
+    IEnumerator AuraCooldown()
+    {
+        _isAura = true;
+
+        yield return new WaitForSeconds(_auracooldown);
+
+        _isAura = false;
+    }
+
+    void AuraShield()
+    {
+        aura = true;
+        _auraObject.SetActive(true);
+    }
+
+    void AuraReload()
+    {
+        StartCoroutine(AuraCooldown());
+    }
+
+    static void AuraChanged(Changed<PlayerInputs> changed)
+    {
+        var updateAura = changed.Behaviour._isAura = true;
+        changed.LoadOld();
+
+        var oldAura = changed.Behaviour._isAura;
     }
 
     void Movement(float verticalInput, float horizontalInput)
@@ -110,6 +158,8 @@ public class PlayerInputs : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     void RPC_TakeDamage(float dmg)
     {
+        if (aura) return;
+
         _life -= dmg;
 
         if (_life <= 0) Dead();
