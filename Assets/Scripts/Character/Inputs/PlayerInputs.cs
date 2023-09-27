@@ -21,6 +21,7 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] ParticleSystem _shootParticles;
     [SerializeField] GameObject _auraObject;
     [SerializeField] Aura _aura;
+    [SerializeField] WeaponController _weapons;
 
     NetworkInputsData _inputs;
     public bool aura;
@@ -40,7 +41,7 @@ public class PlayerInputs : NetworkBehaviour
     {
         if(GetInput(out _inputs))
         {
-            if (_inputs.isFiring) Shoot();
+            if (_inputs.isFiring && !_inputs.isReloading && !_inputs.isJumping) Shoot();
             if (_inputs.isReloading) Reload();
             if (_inputs.isJumping) Jump();
             if (_inputs.auraOn) AuraShield();
@@ -127,13 +128,18 @@ public class PlayerInputs : NetworkBehaviour
     void Reload()
     {
         _myAnim.Animator.SetTrigger("Reload");
+        _weapons.ReloadAmmo();
     }
 
     void Shoot()
     {
         if (Time.time - _lastFiringTime < _cooldown) return;
 
+        if (_weapons.currentAmmo <= 0) return;
+
         _lastFiringTime = Time.time;
+
+        _weapons.UpdateAmo();
 
         _myAnim.Animator.SetBool("Shoot", true);
 

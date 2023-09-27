@@ -229,7 +229,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796182448}
-  m_LocalRotation: {x: -0.015464181, y: 0.6655158, z: 0.01379401, w: 0.7460961}
+  m_LocalRotation: {x: -0.015464182, y: 0.6655157, z: 0.01379401, w: 0.74609613}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -573,7 +573,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579321775}
-  m_LocalRotation: {x: -0.02899691, y: 0.665156, z: 0.025865166, w: 0.7456928}
+  m_LocalRotation: {x: -0.028996905, y: 0.665156, z: 0.025865166, w: 0.74569273}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -802,6 +802,7 @@ GameObject:
   - component: {fileID: 4565532791819322001}
   - component: {fileID: 4258248277435577082}
   - component: {fileID: 7632718111330029910}
+  - component: {fileID: 6059342758897170442}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -899,6 +900,7 @@ MonoBehaviour:
   - {fileID: 4565532791819322006}
   - {fileID: 4565532791819322001}
   - {fileID: 7632718111330029910}
+  - {fileID: 6059342758897170442}
   SimulationBehaviours: []
 --- !u!114 &4565532791819322006
 MonoBehaviour:
@@ -998,7 +1000,24 @@ MonoBehaviour:
   _shootParticles: {fileID: 0}
   _auraObject: {fileID: 7073040104653343865}
   _aura: {fileID: 6042826072091998917}
+  _weapons: {fileID: 6059342758897170442}
   aura: 0
+--- !u!114 &6059342758897170442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565532791819322015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab574bf64a379a54fa74c33b529c560d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _maxAmmo: 15
+  currentAmmo: 0
+  _myAnim: {fileID: 4565532791819322006}
 --- !u!1 &6841032191428018890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _myAnim: {fileID: 1731498720946064640}
+  _weapons: {fileID: 6059342758897170442}
 --- !u!1001 &7991942454670094632
 PrefabInstance:
   m_ObjectHideFlags: 0
