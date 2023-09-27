@@ -149,7 +149,7 @@ public class PlayerInputs : NetworkBehaviour
 
         var oldFiring = changed.Behaviour._isFiring;
 
-        //if (!oldFiring && oldFiring) changed.Behaviour._shootParticles.Play();
+       //if (!oldFiring && oldFiring) changed.Behaviour._shootParticles.Play();
     }
 
     public void TakeDamage(float dmg)
