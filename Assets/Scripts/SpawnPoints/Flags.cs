@@ -6,7 +6,7 @@ using Fusion;
 public class Flags : NetworkBehaviour
 {
     [SerializeField] int _score;
-
+    [SerializeField] GameObject _captureParticles;
     SpawnPoints _spawner;
 
     public override void Spawned()
@@ -19,6 +19,8 @@ public class Flags : NetworkBehaviour
         if (!Object || !Object.HasStateAuthority) return;
 
         //Sumar puntos al GM
+
+        Runner.Spawn(_captureParticles, this.transform.position,transform.rotation);
 
         _spawner.isCaptured = true;
 

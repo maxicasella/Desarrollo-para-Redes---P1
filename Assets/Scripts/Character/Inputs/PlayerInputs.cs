@@ -18,17 +18,21 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] NetworkRigidbody _myRb;
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] Transform _projectileSpawnPoint;
-    [SerializeField] ParticleSystem _shootParticles;
     [SerializeField] GameObject _auraObject;
     [SerializeField] Aura _aura;
     [SerializeField] WeaponController _weapons;
+    [SerializeField] GameObject _damageParticles;
+    [SerializeField] Transform _damagePoint;
 
     NetworkInputsData _inputs;
     public bool aura;
+    public GameObject shootParticles;
 
     [Networked(OnChanged = nameof(OnFiringChanged))] bool _isFiring { get; set; }
 
     [Networked(OnChanged = nameof(AuraChanged))] bool _isAura { get; set; }
+
+    [Networked(OnChanged = nameof(OnDamage))] bool _isDamage { get; set; }
 
     bool _isWalking;
     float _lastFiringTime;
@@ -144,7 +148,7 @@ public class PlayerInputs : NetworkBehaviour
         _myAnim.Animator.SetBool("Shoot", true);
 
         Runner.Spawn(_bulletPrefab, _projectileSpawnPoint.position, transform.rotation);
-
+    
         StartCoroutine(FiringCooldown());
     }
 
@@ -155,12 +159,23 @@ public class PlayerInputs : NetworkBehaviour
 
         var oldFiring = changed.Behaviour._isFiring;
 
-       //if (!oldFiring && oldFiring) changed.Behaviour._shootParticles.Play();
+        if (oldFiring) changed.Behaviour.shootParticles.SetActive(true);
     }
 
     public void TakeDamage(float dmg)
     {
         RPC_TakeDamage(dmg);
+    }
+
+    static void OnDamage(Changed<PlayerInputs> changed)
+    {
+        var updateDamage = changed.Behaviour._isDamage = true;
+        changed.LoadOld(); //Carga el valor anterior de la variable
+
+        var oldDamage = changed.Behaviour._isDamage;
+
+        if (oldDamage) changed.Behaviour.Runner.Spawn(changed.Behaviour._damageParticles, changed.Behaviour._damagePoint.position, changed.Behaviour.transform.rotation);
+
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

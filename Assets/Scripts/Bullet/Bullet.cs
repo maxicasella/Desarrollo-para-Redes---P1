@@ -9,11 +9,12 @@ public class Bullet : NetworkBehaviour
     [SerializeField] float _lifetime;
     [SerializeField] float _dmg;
 
-    [SerializeField] GameObject _explotion;
+    [SerializeField] ParticleSystem _explotion;
 
     float _time;
     NetworkRigidbody _rb;
 
+    [Networked(OnChanged = nameof(OnExplotion))] bool _isExplotion { get; set; }
 
     public override void Spawned()
     {
@@ -43,5 +44,15 @@ public class Bullet : NetworkBehaviour
         }
 
         Runner.Despawn(Object);
+    }
+
+    static void OnExplotion(Changed<Bullet> changed)
+    {
+        var updateExplotion = changed.Behaviour._isExplotion = true;
+        changed.LoadOld(); 
+
+        var oldExplotion = changed.Behaviour._isExplotion;
+
+        if (oldExplotion) changed.Behaviour._explotion.Play();
     }
 }

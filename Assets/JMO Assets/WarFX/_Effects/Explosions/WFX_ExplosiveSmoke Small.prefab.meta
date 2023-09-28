@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 2e7e92bc7175b744ea40878dedfa79e4
 labels:
-- warfx
-- particles
-- explosion
+- FusionPrefab
 - desktop
+- explosion
+- particles
+- warfx
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
