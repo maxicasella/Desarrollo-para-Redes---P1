@@ -994,15 +994,16 @@ MonoBehaviour:
   _auraTime: 0.4
   _auraTimer: 0
   _auracooldown: 1
+  _maxLife: 200
   _myAnim: {fileID: 4565532791819322006}
   _myRb: {fileID: 4565532791819322001}
   _bulletPrefab: {fileID: 546876089636661021, guid: 4a880d01f8900354097bf328f67e7fde, type: 3}
   _projectileSpawnPoint: {fileID: 3130803947767900992}
-  _damagePoint: {fileID: 2216443184668551804}
   _auraObject: {fileID: 7073040104653343865}
   _aura: {fileID: 6042826072091998917}
   _weapons: {fileID: 6059342758897170442}
   _damageParticles: {fileID: 100006, guid: 2e7e92bc7175b744ea40878dedfa79e4, type: 3}
+  _damagePoint: {fileID: 2216443184668551804}
   aura: 0
   shootParticles: {fileID: 3226184983695136943}
 --- !u!114 &6059342758897170442

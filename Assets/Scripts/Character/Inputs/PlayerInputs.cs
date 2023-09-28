@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using UnityEngine.UI;
+using System;
 
 public class PlayerInputs : NetworkBehaviour
 {
@@ -10,11 +11,9 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] float _jumpForce;
     [SerializeField] float _shootSpeed;
     [SerializeField] float _cooldown;
-    [SerializeField] float _life;
     [SerializeField] float _auraTime;
     [SerializeField] float _auraTimer;
     [SerializeField] float _auracooldown;
-
     [SerializeField] NetworkMecanimAnimator _myAnim;
     [SerializeField] NetworkRigidbody _myRb;
     [SerializeField] GameObject _bulletPrefab;
@@ -29,6 +28,13 @@ public class PlayerInputs : NetworkBehaviour
     public bool aura;
     public GameObject shootParticles;
 
+    public event Action<float> OnLifeUpdate = delegate { };
+    public event Action PlayerDead = delegate { };
+
+    [Networked(OnChanged = nameof(LifeChanged))]
+    [SerializeField] float _life { get; set; }
+    [SerializeField] float _maxLife { get; set; }
+
     [Networked(OnChanged = nameof(OnFiringChanged))] bool _isFiring { get; set; }
 
     [Networked(OnChanged = nameof(AuraChanged))] bool _isAura { get; set; }
@@ -38,9 +44,14 @@ public class PlayerInputs : NetworkBehaviour
     bool _isWalking;
     float _lastFiringTime;
 
-    private void Start()
+    void Start()
     {
         _isWalking = false;
+    }
+
+    public override void Spawned()
+    {
+        LifeBarHandler.Instance.CreateLifeBar(this);
     }
     public override void FixedUpdateNetwork()
     {
@@ -186,11 +197,23 @@ public class PlayerInputs : NetworkBehaviour
 
         _life -= dmg;
 
+        OnLifeUpdate(_life / _maxLife);
+
         if (_life <= 0) Dead();
+    }
+
+    static void LifeChanged(Changed<PlayerInputs> changed)
+    {
+        changed.Behaviour.OnLifeUpdate(changed.Behaviour._life / changed.Behaviour._maxLife);
     }
 
     void Dead()
     {
         Runner.Shutdown();
+    }
+
+    public override void Despawned(NetworkRunner runner, bool hasState)
+    {
+        PlayerDead();
     }
 }
