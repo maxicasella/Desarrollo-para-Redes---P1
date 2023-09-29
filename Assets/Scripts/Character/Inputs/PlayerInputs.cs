@@ -23,6 +23,10 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] WeaponController _weapons;
     [SerializeField] GameObject _damageParticles;
     [SerializeField] Transform _damagePoint;
+    [SerializeField] AudioSource _damageAudio;
+    [SerializeField] AudioSource _shootAudio;
+    [SerializeField] AudioSource _auraAudio;
+    [SerializeField] AudioSource _reloadAudio;
 
     NetworkInputsData _inputs;
     public bool aura;
@@ -103,6 +107,7 @@ public class PlayerInputs : NetworkBehaviour
     void AuraShield()
     {
         aura = true;
+        _auraAudio.Play();
         _auraObject.SetActive(true);
     }
 
@@ -144,6 +149,7 @@ public class PlayerInputs : NetworkBehaviour
     void Reload()
     {
         _myAnim.Animator.SetTrigger("Reload");
+        _reloadAudio.Play();
         _weapons.ReloadAmmo();
     }
 
@@ -158,7 +164,7 @@ public class PlayerInputs : NetworkBehaviour
         _weapons.UpdateAmo();
 
         _myAnim.Animator.SetBool("Shoot", true);
-
+        _shootAudio.Play();
         Runner.Spawn(_bulletPrefab, _projectileSpawnPoint.position, transform.rotation);
     
         StartCoroutine(FiringCooldown());
@@ -196,6 +202,7 @@ public class PlayerInputs : NetworkBehaviour
         if (aura) return;
 
         _life -= dmg;
+        _damageAudio.Play();
 
         OnLifeUpdate(_life / _maxLife);
 

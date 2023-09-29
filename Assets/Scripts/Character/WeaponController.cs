@@ -9,6 +9,7 @@ public class WeaponController : NetworkBehaviour
     [SerializeField] float _maxAmmo;
     public float currentAmmo;
     [SerializeField] NetworkMecanimAnimator _myAnim;
+    [SerializeField] AudioSource _reloadAudio;
 
     public override void Spawned()
     {
@@ -25,6 +26,7 @@ public class WeaponController : NetworkBehaviour
 
     public void ReloadAmmo()
     {
+        _reloadAudio.Play();
         currentAmmo = _maxAmmo;
     }
 
