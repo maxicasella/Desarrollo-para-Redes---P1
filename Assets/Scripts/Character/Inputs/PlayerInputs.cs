@@ -55,6 +55,8 @@ public class PlayerInputs : NetworkBehaviour
 
     public override void Spawned()
     {
+        _maxLife = 200;
+        _life = _maxLife;
         LifeBarHandler.Instance.CreateLifeBar(this);
     }
     public override void FixedUpdateNetwork()
@@ -219,6 +221,10 @@ public class PlayerInputs : NetworkBehaviour
         Runner.Shutdown();
     }
 
+    public float LocalLife()
+    {
+         return _life;
+    }
     public override void Despawned(NetworkRunner runner, bool hasState)
     {
         PlayerDead();

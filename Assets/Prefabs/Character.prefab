@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _movementSpeed: 10
-  _jumpForce: 3
+  _jumpForce: 4
   _shootSpeed: 10
   _cooldown: 0.15
   _auraTime: 3
