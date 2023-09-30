@@ -55,6 +55,7 @@ public class PlayerInputs : NetworkBehaviour
 
     public override void Spawned()
     {
+        GameManager.Instance.AddPlayers(this);
         _maxLife = 200;
         _life = _maxLife;
         LifeBarHandler.Instance.CreateLifeBar(this);
@@ -224,6 +225,15 @@ public class PlayerInputs : NetworkBehaviour
     public float LocalLife()
     {
          return _life;
+    }
+
+    public float AuraFill()
+    {
+        float fill = 0f;
+
+        if (!aura) return fill = 1;
+
+        return fill;
     }
     public override void Despawned(NetworkRunner runner, bool hasState)
     {

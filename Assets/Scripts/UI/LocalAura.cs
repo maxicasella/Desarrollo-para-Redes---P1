@@ -4,10 +4,10 @@ using UnityEngine;
 using Fusion;
 using UnityEngine.UI;
 
-public class LocalLifeBar : NetworkBehaviour
+public class LocalAura : NetworkBehaviour
 {
     PlayerInputs _player;
-    [SerializeField] Text _myTxt;
+    [SerializeField] Image _auraFill;
 
     public override void Spawned()
     {
@@ -19,7 +19,13 @@ public class LocalLifeBar : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        _myTxt.text = _player.LocalLife().ToString("00");
+        UpdateAura();
+    }
+
+    void UpdateAura()
+    {
+        var amount = _player.AuraFill();
+        _auraFill.fillAmount = amount;
     }
 
 }

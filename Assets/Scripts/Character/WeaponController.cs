@@ -13,6 +13,7 @@ public class WeaponController : NetworkBehaviour
 
     public override void Spawned()
     {
+        GameManager.Instance.AddWeapons(this);
         currentAmmo = _maxAmmo;
     }
 

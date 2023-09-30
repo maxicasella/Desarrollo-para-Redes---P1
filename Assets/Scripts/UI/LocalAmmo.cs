@@ -11,7 +11,10 @@ public class LocalAmmo : NetworkBehaviour
 
     public override void Spawned()
     {
-        if (Object.HasStateAuthority) _weapons = FindObjectOfType<WeaponController>();
+        foreach (var weapons in GameManager.Instance.Weapons())
+        {
+            if (weapons.HasStateAuthority) _weapons = weapons;
+        }
     }
 
     public override void FixedUpdateNetwork()
