@@ -19,18 +19,20 @@ public class NetworkHandler : MonoBehaviour
         var clientTask = InitializeGame(GameMode.Shared, SceneManager.GetActiveScene().buildIndex);
     }
 
+
     Task InitializeGame(GameMode gameMode, SceneRef sceneToLoad) //Creamos la sesion
     {
         var sceneManager = GetComponent<NetworkSceneManagerDefault>();
-
-        _runner.ProvideInput = true; //Avisamos al runner que comienza a tomar Inputs
-
+   
         return _runner.StartGame(new StartGameArgs() //Le podemos indicar parametros que posee StartGameArgs
         {
             GameMode = gameMode,
             Scene = sceneToLoad,
             SessionName = "SessionName",
-            SceneManager = sceneManager
+            SceneManager = sceneManager,
+            PlayerCount = 2
         });
     }
+
+
 }

@@ -5,7 +5,7 @@ using Fusion;
 
 public class SpawnPoints : NetworkBehaviour
 {
-    public static SpawnPoints Instance { get; private set; }
+
     [SerializeField] Transform[] _spawnPoints;
     [SerializeField] GameObject _flagPrefab;
 
@@ -14,11 +14,6 @@ public class SpawnPoints : NetworkBehaviour
 
     public NetworkBool isCaptured;
 
-    void Awake()
-    {
-        if (Instance) Destroy(gameObject);
-        else Instance = this;
-    }
     public override void Spawned()
     {
         _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
@@ -33,6 +28,12 @@ public class SpawnPoints : NetworkBehaviour
     }
 
     public void Spawn()
+    {
+        RPC_Spawn();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    void RPC_Spawn()
     {
         _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
 
