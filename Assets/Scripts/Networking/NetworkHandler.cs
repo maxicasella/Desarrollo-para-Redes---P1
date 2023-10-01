@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class NetworkHandler : MonoBehaviour
 {
     NetworkRunner _runner;
+    bool _startGame = false;
 
     void Start()
     {
@@ -19,6 +20,21 @@ public class NetworkHandler : MonoBehaviour
         var clientTask = InitializeGame(GameMode.Shared, SceneManager.GetActiveScene().buildIndex);
     }
 
+    void Update()
+    {
+        if (_startGame) return;
+        StartGameOk();
+    }
+
+    bool StartGameOk()
+    {
+        if (GameManager.Instance.CheckConnectedPlayers())
+        {
+            _runner.ProvideInput = true; //Avisamos al runner que comienza a tomar Inputs
+            return _startGame = true;
+        }
+        else return _runner.ProvideInput = false;
+    }
 
     Task InitializeGame(GameMode gameMode, SceneRef sceneToLoad) //Creamos la sesion
     {

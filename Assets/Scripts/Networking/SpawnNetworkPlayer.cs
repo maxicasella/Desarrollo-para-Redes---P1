@@ -13,24 +13,6 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
 
     SharedMode.NetworkCharacterController _characterController;
 
-    bool _startGame = false;
-
-    void Update()
-    {
-        if (_startGame) return;
-        StartGameOk();
-    }
-
-    bool StartGameOk()
-    {
-        if (GameManager.Instance.CheckConnectedPlayers())
-        {
-            _runner.ProvideInput = true; //Avisamos al runner que comienza a tomar Inputs
-            return _startGame = true;
-        }
-        else return _startGame = false;
-    }
-
     public void OnConnectedToServer(NetworkRunner runner) //Spawn del Player
     {
         if (runner.Topology == SimulationConfig.Topologies.Shared)

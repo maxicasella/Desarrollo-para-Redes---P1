@@ -9,8 +9,8 @@ public class SpawnPoints : NetworkBehaviour
     [SerializeField] Transform[] _spawnPoints;
     [SerializeField] GameObject _flagPrefab;
 
-    int _lastSpawnPoint;
-    int _currentSpawnPoint;
+    [Networked] int _lastSpawnPoint { get; set; }
+    [Networked] int _currentSpawnPoint { get; set; }
 
     public NetworkBool isCaptured;
 
@@ -18,12 +18,16 @@ public class SpawnPoints : NetworkBehaviour
     {
         _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
         _lastSpawnPoint = _currentSpawnPoint;
-
-        Runner.Spawn(_flagPrefab, _spawnPoints[_currentSpawnPoint].position, transform.rotation);
+        if (GameManager.Instance.CheckConnectedPlayers())
+        {
+            Runner.Spawn(_flagPrefab, _spawnPoints[_currentSpawnPoint].position, transform.rotation);
+        }
+        else isCaptured = true;
     }
 
     public override void FixedUpdateNetwork()
     {
+        if (!GameManager.Instance.CheckConnectedPlayers()) return;
         if(isCaptured) StartCoroutine(SpawnCorroutine());
     }
 
@@ -47,7 +51,7 @@ public class SpawnPoints : NetworkBehaviour
     {
         Spawn();
 
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.05f);
 
         if(isCaptured) isCaptured = false;
     }

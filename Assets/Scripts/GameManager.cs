@@ -52,10 +52,11 @@ public class GameManager : NetworkBehaviour
         _actualWeapons.Add(player);
     }
 
-    public bool CheckConnectedPlayers() //REVISAR
+    public bool CheckConnectedPlayers() 
     {
-        if (_actualPlayers.Count == 2) return true;
-        else return false;
+        var b = false;
+        if (_actualPlayers.Count == 2) return b = true;
+        else return b  = false;
     }
 
     public List<WeaponController> Weapons()
