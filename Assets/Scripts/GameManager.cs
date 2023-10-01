@@ -68,9 +68,9 @@ public class GameManager : NetworkBehaviour
     {
         for (int i = 0; i < _actualPlayers.Count; i++)
         {
-            if (_actualPlayers[0] && _actualPlayers[0] == player) _localScore += score;
+            if (_actualPlayers[i] == player && _actualPlayers[i].HasStateAuthority) _localScore += score;
             else _proxyScore += score;
-        }     
+        } 
     }
 
     void PrintScore ()
