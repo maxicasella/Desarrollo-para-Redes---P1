@@ -10528,6 +10528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 749466306}
+  - component: {fileID: 749466307}
   m_Layer: 0
   m_Name: Spawn2
   m_TagString: Untagged
@@ -10543,13 +10544,36 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749466305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -105.2, y: 0, z: 107}
+  m_LocalPosition: {x: -105.2, y: -3.02, z: 107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1282621394}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &749466307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749466305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 962200e4204a48d5aea424415ccac453
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &749584928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13509,8 +13533,7 @@ MonoBehaviour:
   - {fileID: 151916783}
   - {fileID: 2010206497}
   _flagPrefab: {fileID: 6584943094132862721, guid: e916fccdd879ab149855170d29940298, type: 3}
-  isCaptured:
-    _value: 0
+  _isCaptured: 0
 --- !u!1001 &960259482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15440,6 +15463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065993147}
+  - component: {fileID: 1065993148}
   m_Layer: 0
   m_Name: Spawn1
   m_TagString: Untagged
@@ -15455,13 +15479,36 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065993146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 0, z: 5.1}
+  m_LocalPosition: {x: -1.1, y: -3.02, z: 5.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1282621394}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1065993148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065993146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 8c4d1af201da46438dac85e3cdbaf9a5
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &1075726507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15732,6 +15779,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 4565532791819322007, guid: 7c7c2eca81a37874eab9ac00ac7ce227, type: 3}
+  spawnPoints:
+  - {fileID: 1065993147}
+  - {fileID: 749466306}
 --- !u!1001 &1095808991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18785,6 +18835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1282621394}
+  - component: {fileID: 1282621395}
   m_Layer: 0
   m_Name: ---SpawnPlayerPoints
   m_TagString: Untagged
@@ -18809,6 +18860,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282621395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282621393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 3acf71af7138450d9a1365dfcefb7096
+  NestedObjects:
+  - {fileID: 1065993148}
+  - {fileID: 749466307}
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &1283705373
 PrefabInstance:
   m_ObjectHideFlags: 0

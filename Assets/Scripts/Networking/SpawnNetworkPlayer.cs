@@ -11,12 +11,25 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
     NetworkRunner _runner;
     [SerializeField] NetworkPlayer _playerPrefab;
 
+    [SerializeField] Transform[] spawnPoints;
+
     SharedMode.NetworkCharacterController _characterController;
 
     public void OnConnectedToServer(NetworkRunner runner) //Spawn del Player
     {
         if (runner.Topology == SimulationConfig.Topologies.Shared)
-                runner.Spawn(_playerPrefab, Vector3.zero, Quaternion.identity, runner.LocalPlayer);
+        {
+            Transform spawnPoint = GetRandomSpawnPoint();
+
+            runner.Spawn(_playerPrefab, spawnPoint.position, spawnPoint.rotation, runner.LocalPlayer);
+        }
+                
+    }
+
+    Transform GetRandomSpawnPoint()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
+        return spawnPoints[randomIndex];
     }
 
     public void OnInput(NetworkRunner runner, NetworkInput input) //Inputs
