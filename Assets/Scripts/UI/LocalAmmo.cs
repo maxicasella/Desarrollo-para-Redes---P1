@@ -13,7 +13,7 @@ public class LocalAmmo : NetworkBehaviour
     {
         foreach (var weapons in GameManager.Instance.Weapons())
         {
-            if (weapons.HasStateAuthority) _weapons = weapons;
+            if (weapons.HasInputAuthority) _weapons = weapons;
         }
     }
 

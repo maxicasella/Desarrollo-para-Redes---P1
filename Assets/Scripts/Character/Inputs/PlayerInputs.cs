@@ -64,7 +64,7 @@ public class PlayerInputs : NetworkBehaviour
     {
         if(GetInput(out _inputs))
         {
-            if (_inputs.isFiring && !_inputs.isReloading && !_inputs.isJumping) Shoot();
+            if (_inputs.isFiring) Shoot();
             if (_inputs.isReloading) Reload();
             if (_inputs.isJumping) Jump();
             if (_inputs.auraOn) AuraShield();

@@ -13,7 +13,7 @@ public class LocalLifeBar : NetworkBehaviour
     {
         foreach (var players in GameManager.Instance.Players())
         {
-            if (players.HasStateAuthority) _player = players;
+            if (players.HasInputAuthority) _player = players;
         }
     }
 
