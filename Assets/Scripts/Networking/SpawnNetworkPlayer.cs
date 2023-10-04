@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using Fusion;
 using Fusion.Sockets;
-using System;
+using Cinemachine;
 
 public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
 {
@@ -14,30 +15,51 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] Transform[] spawnPoints;
 
     bool _startGame = false;
+    [Networked] int _spawn {get; set;}
 
     SharedMode.NetworkCharacterController _characterController;
 
     void Start()
     {
-        _runner = GetComponent<NetworkRunner>();
+        _spawn=0;
+       _runner = GetComponent<NetworkRunner>();
     }
 
-    //void Update()
-    //{
-    //    if (_startGame) return;
-    //    StartGameOk();
-    //}
+    void Update()
+    {
+        if (_startGame) return;
+        StartGameOk();
+    }
 
     public void OnConnectedToServer(NetworkRunner runner) //Spawn del Player
     {
         if (runner.Topology == SimulationConfig.Topologies.Shared)
         {
-            Transform spawnPoint = GetRandomSpawnPoint();
-
-            var localPlayer = runner.Spawn(_playerPrefab, spawnPoint.position, spawnPoint.rotation, runner.LocalPlayer);
-            _characterController = localPlayer.GetComponent<SharedMode.NetworkCharacterController>();
+            if(_spawn == 0)
+            {
+                var localPlayer = runner.Spawn(_playerPrefab, spawnPoints[0].position, spawnPoints[0].rotation, runner.LocalPlayer);
+                _characterController = localPlayer.GetComponent<SharedMode.NetworkCharacterController>();
+                var localCamera = _characterController.GetComponentInChildren<CinemachineFreeLook>();
+                localCamera.Priority = 2;
+                _spawn = 1;
+            }
+            else
+            {
+                var localPlayer = runner.Spawn(_playerPrefab, spawnPoints[1].position, spawnPoints[1].rotation, runner.LocalPlayer);
+                _characterController = localPlayer.GetComponent<SharedMode.NetworkCharacterController>();
+                var localCamera = _characterController.GetComponentInChildren<CinemachineFreeLook>();
+                localCamera.Priority = 2;
+            }
         }
-                
+        Debug.Log(_spawn);
+
+       
+    }
+    public void OnInput(NetworkRunner runner, NetworkInput input) //Inputs
+    {
+        if (!NetworkPlayer.Local || !_characterController) return;
+
+        input.Set(_characterController.GetLocalInputs()); //Si lo tengo, llamo al metodo para obtener los inputs
     }
 
     bool StartGameOk()
@@ -46,23 +68,12 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
         {
             _runner.ProvideInput = true;
             
-            return _startGame = true; //Avisamos al runner que comienza a tomar Inputs
+            return _startGame = true; 
         }
         else return _runner.ProvideInput = false;
     }
 
-    Transform GetRandomSpawnPoint()
-    {
-        int randomIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
-        return spawnPoints[randomIndex];
-    }
 
-    public void OnInput(NetworkRunner runner, NetworkInput input) //Inputs
-    {
-        if (!NetworkPlayer.Local || !_characterController) return;
-
-        input.Set(_characterController.GetLocalInputs()); //Si lo tengo, llamo al metodo para obtener los inputs
-    }
 
     #region Callbacks sin usar
 

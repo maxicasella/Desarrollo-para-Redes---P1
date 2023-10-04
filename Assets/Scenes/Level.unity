@@ -587,7 +587,6 @@ GameObject:
   - component: {fileID: 67461217}
   - component: {fileID: 67461219}
   - component: {fileID: 67461218}
-  - component: {fileID: 67461220}
   m_Layer: 5
   m_Name: TimeTXT
   m_TagString: Untagged
@@ -657,29 +656,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67461216}
   m_CullTransparentMesh: 1
---- !u!114 &67461220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67461216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: bae30eb85acf451a85572c0949e4b1a9
-  NestedObjects: []
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!1001 &67770934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1722,6 +1698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 151916783}
+  - component: {fileID: 151916784}
   m_Layer: 0
   m_Name: Spawn4
   m_TagString: Untagged
@@ -1744,6 +1721,29 @@ Transform:
   m_Father: {fileID: 958856847}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &151916784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151916782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 6d82e03919dc46bb9463a325b56d6ab5
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &158895939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5189,8 +5189,8 @@ GameObject:
   - component: {fileID: 355167176}
   - component: {fileID: 355167175}
   - component: {fileID: 355167174}
-  - component: {fileID: 355167178}
   - component: {fileID: 355167179}
+  - component: {fileID: 355167180}
   m_Layer: 5
   m_Name: LifeCanvas
   m_TagString: Untagged
@@ -5272,14 +5272,28 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 505, y: 259.5}
   m_SizeDelta: {x: 1010, y: 519}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &355167178
+--- !u!114 &355167179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355167173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab636844e60d77148a9a0a75846e046b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _lifeBarPrefab: {fileID: -851313980649177540, guid: d2ccfa066d95a1e4c88c3d292847dc5c, type: 3}
+--- !u!114 &355167180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5298,25 +5312,11 @@ MonoBehaviour:
   AoiPositionSource: {fileID: 0}
   Flags: 2561
   NetworkGuid:
-    RawGuidValue: abe9bb46602549b5a4d1e0201029596a
+    RawGuidValue: 554ddf04f26146d28964c87ad73d8def
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 355167179}
   SimulationBehaviours: []
---- !u!114 &355167179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 355167173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab636844e60d77148a9a0a75846e046b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  _lifeBarPrefab: {fileID: -851313980649177540, guid: d2ccfa066d95a1e4c88c3d292847dc5c, type: 3}
 --- !u!1001 &359514504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5418,6 +5418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 361286316}
+  - component: {fileID: 361286317}
   m_Layer: 0
   m_Name: Spawn2
   m_TagString: Untagged
@@ -5440,6 +5441,29 @@ Transform:
   m_Father: {fileID: 958856847}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361286317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361286315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 6d8eacd050614b48b3456057b3a279ca
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &365456940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6605,7 +6629,6 @@ GameObject:
   - component: {fileID: 444040235}
   - component: {fileID: 444040234}
   - component: {fileID: 444040233}
-  - component: {fileID: 444040237}
   m_Layer: 5
   m_Name: Network Canvas
   m_TagString: Untagged
@@ -6693,45 +6716,13 @@ RectTransform:
   - {fileID: 1856428452}
   - {fileID: 760630580}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &444040237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444040232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 54b8ac8b088b4a4eb4c8a218115e63e5
-  NestedObjects:
-  - {fileID: 67461220}
-  - {fileID: 2014816399}
-  - {fileID: 1607034828}
-  - {fileID: 1638887410}
-  - {fileID: 1393727678}
-  - {fileID: 1856428449}
-  - {fileID: 1484778328}
-  - {fileID: 760630577}
-  - {fileID: 1134588655}
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!1001 &446255011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10497,6 +10488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 748669859}
+  - component: {fileID: 748669860}
   m_Layer: 0
   m_Name: Spawn3
   m_TagString: Untagged
@@ -10519,6 +10511,29 @@ Transform:
   m_Father: {fileID: 958856847}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748669860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748669858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 56d9652ca48f4396a95e848f19e4a400
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1 &749466305
 GameObject:
   m_ObjectHideFlags: 0
@@ -10940,7 +10955,6 @@ GameObject:
   - component: {fileID: 760630580}
   - component: {fileID: 760630579}
   - component: {fileID: 760630578}
-  - component: {fileID: 760630577}
   m_Layer: 5
   m_Name: ProxyPlayerScore
   m_TagString: Untagged
@@ -10948,30 +10962,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &760630577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760630576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 8df7dca0f3e348df9c87f2b3898a8978
-  NestedObjects:
-  - {fileID: 1134588655}
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!114 &760630578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13487,7 +13477,7 @@ Transform:
   - {fileID: 151916783}
   - {fileID: 2010206497}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &958856848
 MonoBehaviour:
@@ -13509,7 +13499,12 @@ MonoBehaviour:
   Flags: 2561
   NetworkGuid:
     RawGuidValue: f22348ab9419457eacb96b69b8c29570
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 1747833197}
+  - {fileID: 361286317}
+  - {fileID: 748669860}
+  - {fileID: 151916784}
+  - {fileID: 2010206498}
   NetworkedBehaviours:
   - {fileID: 958856849}
   SimulationBehaviours: []
@@ -18835,7 +18830,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1282621394}
-  - component: {fileID: 1282621395}
   m_Layer: 0
   m_Name: ---SpawnPlayerPoints
   m_TagString: Untagged
@@ -18858,33 +18852,8 @@ Transform:
   - {fileID: 1065993147}
   - {fileID: 749466306}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1282621395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282621393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 3acf71af7138450d9a1365dfcefb7096
-  NestedObjects:
-  - {fileID: 1065993148}
-  - {fileID: 749466307}
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!1001 &1283705373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23880,7 +23849,6 @@ GameObject:
   - component: {fileID: 1603765067}
   - component: {fileID: 1603765066}
   - component: {fileID: 1603765065}
-  - component: {fileID: 1603765069}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -23980,37 +23948,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603765064}
-  m_LocalRotation: {x: -0.015938405, y: 0.94030774, z: -0.04446773, w: -0.33703113}
-  m_LocalPosition: {x: 3.2822392, y: 2.5, z: 3.771857}
+  m_LocalRotation: {x: 0.045399524, y: 0.12647133, z: -0.0057943864, w: 0.9909139}
+  m_LocalPosition: {x: -1.096208, y: 2.5, z: -4.878353}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 3.585, y: 0, z: 0}
---- !u!114 &1603765069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603765064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 5a4fd01f485743b692e06bfab5d7a0ed
-  NestedObjects: []
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!1 &1607034827
 GameObject:
   m_ObjectHideFlags: 0
@@ -24022,8 +23967,8 @@ GameObject:
   - component: {fileID: 1607034831}
   - component: {fileID: 1607034830}
   - component: {fileID: 1607034829}
-  - component: {fileID: 1607034828}
   - component: {fileID: 1607034832}
+  - component: {fileID: 1607034833}
   m_Layer: 5
   m_Name: BulletTXT
   m_TagString: Untagged
@@ -24031,30 +23976,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1607034828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607034827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 4c392d7bc11f4c84a1a50ca312ec9992
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1607034832}
-  SimulationBehaviours: []
 --- !u!114 &1607034829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24132,6 +24053,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _myTxt: {fileID: 1607034829}
+--- !u!114 &1607034833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607034827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: ad7c0e87b58543b993cc83180a434d8a
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1607034832}
+  SimulationBehaviours: []
 --- !u!1001 &1610260733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24327,8 +24272,8 @@ GameObject:
   - component: {fileID: 1638887406}
   - component: {fileID: 1638887408}
   - component: {fileID: 1638887407}
-  - component: {fileID: 1638887410}
   - component: {fileID: 1638887409}
+  - component: {fileID: 1638887410}
   m_Layer: 5
   m_Name: Shield
   m_TagString: Untagged
@@ -24428,7 +24373,7 @@ MonoBehaviour:
   AoiPositionSource: {fileID: 0}
   Flags: 2561
   NetworkGuid:
-    RawGuidValue: 46b2687c16fd471e8d8e661a9782504e
+    RawGuidValue: e33cf2399d744bf3a7d63faaffec8abc
   NestedObjects:
   - {fileID: 1393727678}
   NetworkedBehaviours:
@@ -25846,7 +25791,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1733067410
 PrefabInstance:
@@ -26102,6 +26047,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747833196}
+  - component: {fileID: 1747833197}
   m_Layer: 0
   m_Name: Spawn1
   m_TagString: Untagged
@@ -26124,6 +26070,29 @@ Transform:
   m_Father: {fileID: 958856847}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1747833197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747833195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: d58b060a28074a479673f160168e1b00
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &1753419516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27147,8 +27116,9 @@ Transform:
   - {fileID: 1429508294}
   - {fileID: 1274940831}
   - {fileID: 2031722259}
+  - {fileID: 2118093673}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1813760854
 PrefabInstance:
@@ -27757,7 +27727,6 @@ GameObject:
   - component: {fileID: 1856428452}
   - component: {fileID: 1856428451}
   - component: {fileID: 1856428450}
-  - component: {fileID: 1856428449}
   m_Layer: 5
   m_Name: LocalPlayerScore
   m_TagString: Untagged
@@ -27765,30 +27734,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1856428449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856428448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 045302f1ba6f44799bb143896474e8ff
-  NestedObjects:
-  - {fileID: 1484778328}
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!114 &1856428450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27849,7 +27794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -5, y: -15.199997}
+  m_AnchoredPosition: {x: -5, y: -15.200012}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1862668893
@@ -30001,6 +29946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2010206497}
+  - component: {fileID: 2010206498}
   m_Layer: 0
   m_Name: Spawn5
   m_TagString: Untagged
@@ -30023,33 +29969,13 @@ Transform:
   m_Father: {fileID: 958856847}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2014816398
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2014816402}
-  - component: {fileID: 2014816401}
-  - component: {fileID: 2014816400}
-  - component: {fileID: 2014816399}
-  - component: {fileID: 2014816403}
-  m_Layer: 5
-  m_Name: LifeTXT
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2014816399
+--- !u!114 &2010206498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014816398}
+  m_GameObject: {fileID: 2010206496}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
@@ -30062,11 +29988,30 @@ MonoBehaviour:
   AoiPositionSource: {fileID: 0}
   Flags: 2561
   NetworkGuid:
-    RawGuidValue: f64a826942b44b40aa731caedb827dcb
+    RawGuidValue: 42a66beef31e488a90cab33d52d86079
   NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 2014816403}
+  NetworkedBehaviours: []
   SimulationBehaviours: []
+--- !u!1 &2014816398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014816402}
+  - component: {fileID: 2014816401}
+  - component: {fileID: 2014816400}
+  - component: {fileID: 2014816403}
+  - component: {fileID: 2014816404}
+  m_Layer: 5
+  m_Name: LifeTXT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!114 &2014816400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30144,6 +30089,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _myTxt: {fileID: 2014816400}
+--- !u!114 &2014816404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014816398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 6db69324e5534e8195b55d8beae34b93
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 2014816403}
+  SimulationBehaviours: []
 --- !u!4 &2015176646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4619486662236612, guid: e05ee61d6dad0e54eb51d1c8ec3becc6, type: 3}
@@ -31511,13 +31480,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118093669}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 37.8}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20.348488, y: 42.16963, z: 20.141144}
   m_LocalScale: {x: 140, y: 5, z: 140}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1810914041}
+  m_RootOrder: 332
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2136216059
 PrefabInstance:
