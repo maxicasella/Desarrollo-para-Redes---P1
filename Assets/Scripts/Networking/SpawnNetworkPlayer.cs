@@ -21,7 +21,6 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
 
     void Start()
     {
-        _spawn=0;
        _runner = GetComponent<NetworkRunner>();
     }
 
@@ -33,15 +32,16 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnConnectedToServer(NetworkRunner runner) //Spawn del Player
     {
+        Debug.Log(_spawn);
         if (runner.Topology == SimulationConfig.Topologies.Shared)
         {
-            if(_spawn == 0)
+            if(_spawn == 1)
             {
                 var localPlayer = runner.Spawn(_playerPrefab, spawnPoints[0].position, spawnPoints[0].rotation, runner.LocalPlayer);
                 _characterController = localPlayer.GetComponent<SharedMode.NetworkCharacterController>();
                 var localCamera = _characterController.GetComponentInChildren<CinemachineFreeLook>();
                 localCamera.Priority = 2;
-                _spawn = 1;
+      
             }
             else
             {
@@ -49,11 +49,10 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
                 _characterController = localPlayer.GetComponent<SharedMode.NetworkCharacterController>();
                 var localCamera = _characterController.GetComponentInChildren<CinemachineFreeLook>();
                 localCamera.Priority = 2;
+                _spawn = 1;
             }
         }
         Debug.Log(_spawn);
-
-       
     }
     public void OnInput(NetworkRunner runner, NetworkInput input) //Inputs
     {

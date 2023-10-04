@@ -10,7 +10,7 @@ public class AnimationEvents: MonoBehaviour
     public void ShootFinish()
     {
         _myAnim.SetBool("Shoot", false);
-        _player.shootParticles.SetActive(false);
+        //_player.shootParticles.SetActive(false);
     }
 
     public void Reload()

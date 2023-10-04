@@ -29,8 +29,8 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] AudioSource _reloadAudio;
 
     NetworkInputsData _inputs;
-    public bool aura;
-    public GameObject shootParticles;
+    public NetworkBool aura;
+    public ParticleSystem shootParticles;
 
     public event Action<float> OnLifeUpdate = delegate { };
     public event Action PlayerDead = delegate { };
@@ -107,25 +107,27 @@ public class PlayerInputs : NetworkBehaviour
         _isAura = false;
     }
 
-    void AuraShield()
-    {
-        aura = true;
-        _auraAudio.Play();
-        _auraObject.SetActive(true);
-    }
-
     void AuraReload()
     {
         StartCoroutine(AuraCooldown());
     }
 
+    void AuraShield()
+    {
+        aura = true;
+        _auraAudio.Play();
+       _auraObject.SetActive(true);
+    }
     static void AuraChanged(Changed<PlayerInputs> changed)
     {
         var updateAura = changed.Behaviour._isAura = true;
         changed.LoadOld();
 
         var oldAura = changed.Behaviour._isAura;
+
+        //if (oldAura) changed.Behaviour._auraObject.SetActive(true);
     }
+   
 
     void Movement(float verticalInput, float horizontalInput)
     {
@@ -180,7 +182,7 @@ public class PlayerInputs : NetworkBehaviour
 
         var oldFiring = changed.Behaviour._isFiring;
 
-        if (oldFiring) changed.Behaviour.shootParticles.SetActive(true);
+        if (oldFiring) changed.Behaviour.shootParticles.Play();
     }
 
     public void TakeDamage(float dmg)
@@ -196,13 +198,12 @@ public class PlayerInputs : NetworkBehaviour
         var oldDamage = changed.Behaviour._isDamage;
 
         if (oldDamage) changed.Behaviour.Runner.Spawn(changed.Behaviour._damageParticles, changed.Behaviour._damagePoint.position, changed.Behaviour.transform.rotation);
-
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     void RPC_TakeDamage(float dmg)
     {
-        if (aura) return;
+        //if (aura) return;
 
         _life -= dmg;
         _damageAudio.Play();

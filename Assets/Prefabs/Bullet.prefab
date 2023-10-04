@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 546876089636661008}
   - component: {fileID: 546876089636661011}
   - component: {fileID: 546876089636661010}
+  - component: {fileID: 105855699041848554}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -127,8 +128,21 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _speed: 20
   _lifetime: 0.1
-  _dmg: 10
+  __dmg: 20
   _explotion: {fileID: 5428093997588972281}
+--- !u!65 &105855699041848554
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546876089636661021}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31, y: 0.25, z: 0.58}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3684891911319961050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203,19 +217,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1156803670215244, guid: 65d7e2f41d2be8e48995bb4070bbeca1, type: 3}
   m_PrefabInstance: {fileID: 3684891911319961050}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1442325137397164553
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685987047790163862}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.5586097, y: 5.5150065, z: 2.5586097}
-  m_Center: {x: -0.00000023841858, y: 0.2723434, z: 7.422946e-15}
 --- !u!114 &6100211978476629284
 MonoBehaviour:
   m_ObjectHideFlags: 0

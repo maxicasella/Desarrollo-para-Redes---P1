@@ -7,7 +7,7 @@ public class Bullet : NetworkBehaviour
 {
     [SerializeField] float _speed;
     [SerializeField] float _lifetime;
-    [SerializeField] float _dmg;
+    [Networked] [SerializeField] float _dmg { get; set; }
 
     [SerializeField] ParticleSystem _explotion;
 
@@ -39,8 +39,6 @@ public class Bullet : NetworkBehaviour
         if(other.TryGetComponent(out PlayerInputs enemy))
         {
             enemy.TakeDamage(_dmg);
-
-            Runner.Despawn(Object);
         }
 
         Runner.Despawn(Object);
