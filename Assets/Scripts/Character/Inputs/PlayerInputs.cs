@@ -14,6 +14,7 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] float _auraTime;
     [SerializeField] float _auraTimer;
     [SerializeField] float _auracooldown;
+    [SerializeField] int _deadScore;
 
     [SerializeField] NetworkMecanimAnimator _myAnim;
     [SerializeField] NetworkRigidbody _myRb;
@@ -212,7 +213,8 @@ public class PlayerInputs : NetworkBehaviour
 
     void Dead()
     {
-        Runner.Shutdown();
+        GameManager.Instance.AddScore(this, _deadScore);
+        //Runner.Shutdown();
     }
 
     public float LocalLife()

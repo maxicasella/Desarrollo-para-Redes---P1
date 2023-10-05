@@ -984,6 +984,7 @@ MonoBehaviour:
   _auraTime: 1
   _auraTimer: 0
   _auracooldown: 1.3
+  _deadScore: 600
   _myAnim: {fileID: 5731614406130952757}
   _myRb: {fileID: 4565532791819322001}
   _bulletPrefab: {fileID: 546876089636661021, guid: 4a880d01f8900354097bf328f67e7fde, type: 3}

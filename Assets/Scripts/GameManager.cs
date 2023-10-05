@@ -12,6 +12,9 @@ public class GameManager : NetworkBehaviour
     [SerializeField] Text _timerTxt;
     [SerializeField] Text _localScoreTxt;
     [SerializeField] Text _proxyScoreTxt;
+    [SerializeField] Text _finishTxt;
+
+    [SerializeField] GameObject _finishCanvas;
 
     [SerializeField] List<PlayerInputs> _actualPlayers;
     [SerializeField] List<WeaponController> _actualWeapons;
@@ -38,6 +41,7 @@ public class GameManager : NetworkBehaviour
     {
         UpdateTimer();
         PrintScore();
+        EndGame();
     }
 
     public void AddPlayers(PlayerInputs player)
@@ -105,12 +109,41 @@ public class GameManager : NetworkBehaviour
     {
         if(_minutesTimer == 0 && _minSeconds == 0)
         {
-            if (_localScore > _proxyScore) Debug.Log("Team A Win");
-            else Debug.Log("Team B Win");
+            Time.timeScale = 0;
+            _timerTxt.gameObject.SetActive(false);
+            if (_localScore > _proxyScore)
+            {
+                _finishCanvas.SetActive(true);
+                _finishTxt.text = "Team A Win";
+                if (HasStateAuthority) _finishTxt.color = Color.green;
+                else _finishTxt.color = Color.red;
+            }
+            else
+            {
+                _finishCanvas.SetActive(true);
+                _finishTxt.text = "Team B Win";
+                if (HasStateAuthority) _finishTxt.color = Color.red;
+                else _finishTxt.color = Color.green;
+            }
         }
 
-        if(_localScore >= _maxScore && _proxyScore < _maxScore) Debug.Log("Team A Win");
-        else if(_proxyScore >= _maxScore && _localScore < _maxScore) Debug.Log("Team B Win");
+        if (_localScore >= _maxScore && _proxyScore < _maxScore)
+        {
+            Time.timeScale = 0;
+            _timerTxt.gameObject.SetActive(false);
+            _finishCanvas.SetActive(true);
+            _finishTxt.text = "Team A Win";
+            if (HasStateAuthority) _finishTxt.color = Color.green;
+            else _finishTxt.color = Color.red;
+        }
+        else if (_proxyScore >= _maxScore && _localScore < _maxScore)
+        {
+            Time.timeScale = 0;
+            _timerTxt.gameObject.SetActive(false);
+            _finishCanvas.SetActive(true);
+            _finishTxt.text = "Team B Win";
+            if (HasStateAuthority) _finishTxt.color = Color.red;
+            else _finishTxt.color = Color.green;
+        }
     }
-
 }
