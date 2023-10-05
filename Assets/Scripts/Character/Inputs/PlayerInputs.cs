@@ -96,7 +96,6 @@ public class PlayerInputs : NetworkBehaviour
         Movement(_inputs.xMovement,_inputs.yMovement);
     }
 
-
     void AuraShield()
     {
          aura = true;
