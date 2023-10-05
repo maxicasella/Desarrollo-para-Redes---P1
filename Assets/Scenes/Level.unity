@@ -10544,6 +10544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749466306}
   - component: {fileID: 749466307}
+  - component: {fileID: 749466308}
   m_Layer: 0
   m_Name: Spawn2
   m_TagString: Untagged
@@ -10587,8 +10588,37 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 962200e4204a48d5aea424415ccac453
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 749466308}
   SimulationBehaviours: []
+--- !u!114 &749466308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749466305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 749466306}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
 --- !u!1001 &749584928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10995,7 +11025,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'enemy:'
+  m_Text: 'TEAM B:'
 --- !u!222 &760630579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15459,6 +15489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065993147}
   - component: {fileID: 1065993148}
+  - component: {fileID: 1065993149}
   m_Layer: 0
   m_Name: Spawn1
   m_TagString: Untagged
@@ -15502,8 +15533,37 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 8c4d1af201da46438dac85e3cdbaf9a5
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 1065993149}
   SimulationBehaviours: []
+--- !u!114 &1065993149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065993146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 1065993147}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
 --- !u!1001 &1075726507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27767,7 +27827,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'YOU:'
+  m_Text: 'TEAM A:'
 --- !u!222 &1856428451
 CanvasRenderer:
   m_ObjectHideFlags: 0

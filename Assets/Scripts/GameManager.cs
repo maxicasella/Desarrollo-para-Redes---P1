@@ -25,6 +25,8 @@ public class GameManager : NetworkBehaviour
     [Networked] [SerializeField] float _secondstimer { get; set; }
     [Networked] [SerializeField] int _minutesTimer { get; set; }
 
+    [Networked] [SerializeField] int _maxScore { get; set; }
+
 
     void Awake()
     {
@@ -97,6 +99,18 @@ public class GameManager : NetworkBehaviour
 
         _timerTxt.text = _minutesTimer.ToString() + " : " + Mathf.Floor(_secondstimer).ToString("00");
 
+    }
+
+    void EndGame()
+    {
+        if(_minutesTimer == 0 && _minSeconds == 0)
+        {
+            if (_localScore > _proxyScore) Debug.Log("Team A Win");
+            else Debug.Log("Team B Win");
+        }
+
+        if(_localScore >= _maxScore && _proxyScore < _maxScore) Debug.Log("Team A Win");
+        else if(_proxyScore >= _maxScore && _localScore < _maxScore) Debug.Log("Team B Win");
     }
 
 }
