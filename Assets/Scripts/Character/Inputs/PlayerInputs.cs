@@ -21,16 +21,17 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] GameObject _auraObject;
     [SerializeField] Aura _aura;
     [SerializeField] WeaponController _weapons;
-    [SerializeField] GameObject _damageParticles;
+    [SerializeField] ParticleSystem _damageParticles;
     [SerializeField] Transform _damagePoint;
     [SerializeField] AudioSource _damageAudio;
     [SerializeField] AudioSource _shootAudio;
     [SerializeField] AudioSource _auraAudio;
     [SerializeField] AudioSource _reloadAudio;
+    [SerializeField] ParticleSystem _shootParticles;
 
     NetworkInputsData _inputs;
     public NetworkBool aura;
-    public ParticleSystem shootParticles;
+   
 
     public event Action<float> OnLifeUpdate = delegate { };
     public event Action PlayerDead = delegate { };
@@ -39,11 +40,14 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] float _life { get; set; }
     [SerializeField] float _maxLife { get; set; }
 
-    [Networked(OnChanged = nameof(OnFiringChanged))] bool _isFiring { get; set; }
+    [Networked(OnChanged = nameof(OnFiringChanged))] 
+    bool _isFiring { get; set; }
 
-    [Networked(OnChanged = nameof(AuraChanged))] bool _isAura { get; set; }
+    [Networked(OnChanged = nameof(AuraChanged))] 
+    bool _isAura { get; set; }
 
-    [Networked(OnChanged = nameof(OnDamage))] bool _isDamage { get; set; }
+    [Networked(OnChanged = nameof(OnDamage))]
+    bool _isDamage { get; set; }
 
     bool _isWalking;
     float _lastFiringTime;
@@ -67,19 +71,19 @@ public class PlayerInputs : NetworkBehaviour
             if (_inputs.isFiring) Shoot();
             if (_inputs.isReloading) Reload();
             if (_inputs.isJumping) Jump();
-            if (_inputs.auraOn) AuraShield();
+            /*if(!aura)*/ if (_inputs.auraOn) AuraShield();
         }
 
-        if (aura)
+        if (_isAura)
         {
-            _auraTimer += Time.deltaTime;
+             _auraTimer += Time.deltaTime;
 
             if (_auraTimer >= _auraTime)
             {
                _aura.AuraOff();
-                aura = false;
-                AuraReload();
+                _isAura = false;
                 _auraTimer = 0;
+                AuraReload();
             }
         }
 
@@ -89,34 +93,12 @@ public class PlayerInputs : NetworkBehaviour
         Movement(_inputs.xMovement,_inputs.yMovement);
     }
 
-    IEnumerator FiringCooldown()
-    {
-        _isFiring = true;
-
-        yield return new WaitForSeconds(_cooldown);
-
-        _isFiring = false;
-    }
-
-    IEnumerator AuraCooldown()
-    {
-        _isAura = true;
-
-        yield return new WaitForSeconds(_auracooldown);
-
-        _isAura = false;
-    }
-
-    void AuraReload()
-    {
-        StartCoroutine(AuraCooldown());
-    }
 
     void AuraShield()
     {
-        aura = true;
+        _isAura = true;
+         aura = true;
         _auraAudio.Play();
-       _auraObject.SetActive(true);
     }
     static void AuraChanged(Changed<PlayerInputs> changed)
     {
@@ -125,9 +107,18 @@ public class PlayerInputs : NetworkBehaviour
 
         var oldAura = changed.Behaviour._isAura;
 
-        //if (oldAura) changed.Behaviour._auraObject.SetActive(true);
+        if (!oldAura && updateAura) changed.Behaviour._auraObject.SetActive(true);
+        else changed.Behaviour._auraObject.SetActive(false);
     }
-   
+    void AuraReload()
+    {
+        _auraTimer += Time.deltaTime;
+        if (_auraTimer >= _auracooldown)
+        {
+            aura = false;
+            _auraTimer = 0;
+        }
+    }
 
     void Movement(float verticalInput, float horizontalInput)
     {
@@ -170,11 +161,19 @@ public class PlayerInputs : NetworkBehaviour
 
         _myAnim.Animator.SetBool("Shoot", true);
         _shootAudio.Play();
+
         Runner.Spawn(_bulletPrefab, _projectileSpawnPoint.position, transform.rotation);
-    
+        
         StartCoroutine(FiringCooldown());
     }
+    IEnumerator FiringCooldown()
+    {
+        _isFiring = true;
 
+        yield return new WaitForSeconds(_cooldown);
+
+        _isFiring = false;
+    }
     static void OnFiringChanged(Changed<PlayerInputs> changed)
     {
         var updateFiring = changed.Behaviour._isFiring = true;
@@ -182,12 +181,25 @@ public class PlayerInputs : NetworkBehaviour
 
         var oldFiring = changed.Behaviour._isFiring;
 
-        if (oldFiring) changed.Behaviour.shootParticles.Play();
+        if (!oldFiring && updateFiring) changed.Behaviour._shootParticles.Play();
     }
 
     public void TakeDamage(float dmg)
     {
         RPC_TakeDamage(dmg);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    void RPC_TakeDamage(float dmg)
+    {
+        //if (aura) return;
+        _isDamage = true;
+        _life -= dmg;
+        _damageAudio.Play();
+
+        OnLifeUpdate(_life / _maxLife);
+        _isDamage = false;
+        if (_life <= 0) Dead();
     }
 
     static void OnDamage(Changed<PlayerInputs> changed)
@@ -197,20 +209,7 @@ public class PlayerInputs : NetworkBehaviour
 
         var oldDamage = changed.Behaviour._isDamage;
 
-        if (oldDamage) changed.Behaviour.Runner.Spawn(changed.Behaviour._damageParticles, changed.Behaviour._damagePoint.position, changed.Behaviour.transform.rotation);
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    void RPC_TakeDamage(float dmg)
-    {
-        //if (aura) return;
-
-        _life -= dmg;
-        _damageAudio.Play();
-
-        OnLifeUpdate(_life / _maxLife);
-
-        if (_life <= 0) Dead();
+        if (!oldDamage && updateDamage) changed.Behaviour._damageParticles.Play();
     }
 
     static void LifeChanged(Changed<PlayerInputs> changed)

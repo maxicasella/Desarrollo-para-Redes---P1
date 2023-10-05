@@ -18,6 +18,7 @@ public class GameManager : NetworkBehaviour
 
     float _minSeconds = 0;
     float _maxSeconds = 60;
+    int _tempScore;
 
     [Networked] [SerializeField] int _localScore { get; set; }
     [Networked] [SerializeField] int _proxyScore { get; set; }
@@ -66,11 +67,12 @@ public class GameManager : NetworkBehaviour
 
     public void AddScore(PlayerInputs player, int score) //REVISAR
     {
-        for (int i = 0; i < _actualPlayers.Count; i++)
-        {
-            if (_actualPlayers[i] == player && _actualPlayers[i].HasStateAuthority) _localScore += score;
-            else _proxyScore += score;
-        } 
+        _tempScore += score;
+
+        if (player.HasStateAuthority) _localScore += _tempScore;
+        else _proxyScore += _tempScore;
+
+        _tempScore = 0;
     }
 
     void PrintScore ()

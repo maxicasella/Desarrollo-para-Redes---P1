@@ -16,19 +16,14 @@ public class SpawnPoints : NetworkBehaviour
 
     public override void Spawned()
     {
-        //_currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
-        //_lastSpawnPoint = _currentSpawnPoint;
-        if (GameManager.Instance.CheckConnectedPlayers())
-        {
-            //Runner.Spawn(_flagPrefab, _spawnPoints[_currentSpawnPoint].position, transform.rotation);
-            isCaptured = false;
-        }
+        if (GameManager.Instance.CheckConnectedPlayers()) isCaptured = false;
         else isCaptured = true;
     }
 
     public void Spawn()
     {
         if (!GameManager.Instance.CheckConnectedPlayers()) return;
+
         _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
 
         if (_currentSpawnPoint == _lastSpawnPoint) _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
@@ -41,7 +36,14 @@ public class SpawnPoints : NetworkBehaviour
     {
         StartCoroutine(SpawnCorroutine());
     }
-    
+    IEnumerator SpawnCorroutine()
+    {
+        Spawn();
+
+        yield return new WaitForSeconds(0.01f);
+
+        if (isCaptured) isCaptured = false;
+    }
     static void OnCaptured(Changed<SpawnPoints> changed)
     {
         var updateBool = changed.Behaviour.isCaptured = false;
@@ -50,14 +52,5 @@ public class SpawnPoints : NetworkBehaviour
         var oldBool = changed.Behaviour.isCaptured;
 
         if (oldBool) changed.Behaviour.StartSpawn();
-    }
-
-    IEnumerator SpawnCorroutine()
-    {
-        Spawn();
-
-        yield return new WaitForSeconds(0.01f);
-
-        if(isCaptured) isCaptured = false;
     }
 }
