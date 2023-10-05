@@ -14,20 +14,24 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] float _auraTime;
     [SerializeField] float _auraTimer;
     [SerializeField] float _auracooldown;
+
     [SerializeField] NetworkMecanimAnimator _myAnim;
     [SerializeField] NetworkRigidbody _myRb;
     [SerializeField] GameObject _bulletPrefab;
-    [SerializeField] Transform _projectileSpawnPoint;
     [SerializeField] GameObject _auraObject;
-    [SerializeField] Aura _aura;
     [SerializeField] WeaponController _weapons;
-    [SerializeField] ParticleSystem _damageParticles;
+
+    [SerializeField] Transform _projectileSpawnPoint;
     [SerializeField] Transform _damagePoint;
+    [SerializeField] Transform _auraPoint;
+
     [SerializeField] AudioSource _damageAudio;
     [SerializeField] AudioSource _shootAudio;
     [SerializeField] AudioSource _auraAudio;
     [SerializeField] AudioSource _reloadAudio;
+
     [SerializeField] ParticleSystem _shootParticles;
+    [SerializeField] ParticleSystem _damageParticles;
 
     NetworkInputsData _inputs;
     public bool aura;
@@ -42,9 +46,6 @@ public class PlayerInputs : NetworkBehaviour
 
     [Networked(OnChanged = nameof(OnFiringChanged))] 
     bool _isFiring { get; set; }
-
-    [Networked(OnChanged = nameof(AuraChanged))] 
-    bool _isAura { get; set; }
 
     [Networked(OnChanged = nameof(OnDamage))]
     bool _isDamage { get; set; }
@@ -83,13 +84,11 @@ public class PlayerInputs : NetworkBehaviour
 
             if (_auraTimer >= _auraTime)
             {
-                _aura.AuraOff();
                 _auraTimer = 0;
                 AuraReload();
             }
         }
 
-        //if (!aura) _isAura = false; //No funciona en red
         if (_isWalking) _myAnim.Animator.SetBool("Run", true);
         else _myAnim.Animator.SetBool("Run", false);
        
@@ -99,8 +98,9 @@ public class PlayerInputs : NetworkBehaviour
 
     void AuraShield()
     {
-        _isAura = true;
          aura = true;
+         NetworkObject obj = Runner.Spawn(_auraObject, _auraPoint.position, _auraPoint.rotation);
+         obj.transform.parent = _auraPoint;
         _auraAudio.Play();
     }
     void AuraReload()
@@ -112,17 +112,6 @@ public class PlayerInputs : NetworkBehaviour
             _auraTimer = 0;
         }
     }
-    static void AuraChanged(Changed<PlayerInputs> changed)
-    {
-        var updateAura = changed.Behaviour._isAura = true;
-        changed.LoadOld();
-
-        var oldAura = changed.Behaviour._isAura;
-
-        if (!oldAura && updateAura) changed.Behaviour._auraObject.SetActive(true);
-        else changed.Behaviour._auraObject.SetActive(false);
-    }
-
 
     void Movement(float verticalInput, float horizontalInput)
     {
@@ -196,7 +185,7 @@ public class PlayerInputs : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     void RPC_TakeDamage(float dmg)
     {
-        //if (aura) return;
+        if (aura) return;
         _isDamage = true;
         _life -= dmg;
         _damageAudio.Play();

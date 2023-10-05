@@ -5,10 +5,17 @@ using Fusion;
 public class Aura : NetworkBehaviour
 {
     public NetworkMecanimAnimator myAnim;
+    [SerializeField] float _auraTimer;
+    [SerializeField] float _auracooldown;
 
-    public override void Spawned()
+    public override void FixedUpdateNetwork()
     {
-        this.gameObject.SetActive(false);
+        _auraTimer += Time.deltaTime;
+        if (_auraTimer >= _auracooldown)
+        {
+            AuraOff();
+            Runner.Despawn(Object);
+        }
     }
     public void AuraOff()
     {
