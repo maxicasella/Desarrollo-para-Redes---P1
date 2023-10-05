@@ -22,7 +22,7 @@ public class SpawnPoints : NetworkBehaviour
 
     public void Spawn()
     {
-        if (!GameManager.Instance.CheckConnectedPlayers()) return;
+        if (!HasStateAuthority) return;
 
         _currentSpawnPoint = Random.Range(0, _spawnPoints.Length);
 
@@ -36,6 +36,7 @@ public class SpawnPoints : NetworkBehaviour
     {
         StartCoroutine(SpawnCorroutine());
     }
+
     IEnumerator SpawnCorroutine()
     {
         Spawn();

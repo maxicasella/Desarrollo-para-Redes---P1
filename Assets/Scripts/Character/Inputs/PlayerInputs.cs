@@ -30,7 +30,7 @@ public class PlayerInputs : NetworkBehaviour
     [SerializeField] ParticleSystem _shootParticles;
 
     NetworkInputsData _inputs;
-    public NetworkBool aura;
+    public bool aura;
    
 
     public event Action<float> OnLifeUpdate = delegate { };
@@ -71,22 +71,25 @@ public class PlayerInputs : NetworkBehaviour
             if (_inputs.isFiring) Shoot();
             if (_inputs.isReloading) Reload();
             if (_inputs.isJumping) Jump();
-            /*if(!aura)*/ if (_inputs.auraOn) AuraShield();
+            if (!aura)
+            {
+                if (_inputs.auraOn) AuraShield();
+            }
         }
 
-        if (_isAura)
+        if (aura)
         {
-             _auraTimer += Time.deltaTime;
+            _auraTimer += Time.deltaTime;
 
             if (_auraTimer >= _auraTime)
             {
-               _aura.AuraOff();
-                _isAura = false;
+                _aura.AuraOff();
                 _auraTimer = 0;
                 AuraReload();
             }
         }
 
+        //if (!aura) _isAura = false; //No funciona en red
         if (_isWalking) _myAnim.Animator.SetBool("Run", true);
         else _myAnim.Animator.SetBool("Run", false);
        
@@ -100,6 +103,15 @@ public class PlayerInputs : NetworkBehaviour
          aura = true;
         _auraAudio.Play();
     }
+    void AuraReload()
+    {
+        aura = false;
+        _auraTimer += Time.deltaTime;
+        if (_auraTimer >= _auracooldown)
+        {
+            _auraTimer = 0;
+        }
+    }
     static void AuraChanged(Changed<PlayerInputs> changed)
     {
         var updateAura = changed.Behaviour._isAura = true;
@@ -110,15 +122,7 @@ public class PlayerInputs : NetworkBehaviour
         if (!oldAura && updateAura) changed.Behaviour._auraObject.SetActive(true);
         else changed.Behaviour._auraObject.SetActive(false);
     }
-    void AuraReload()
-    {
-        _auraTimer += Time.deltaTime;
-        if (_auraTimer >= _auracooldown)
-        {
-            aura = false;
-            _auraTimer = 0;
-        }
-    }
+
 
     void Movement(float verticalInput, float horizontalInput)
     {
