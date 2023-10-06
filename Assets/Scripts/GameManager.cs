@@ -30,6 +30,8 @@ public class GameManager : NetworkBehaviour
 
     [Networked] [SerializeField] int _maxScore { get; set; }
 
+    int _spawn;
+    int _lastSpawn { get; set; }
 
     void Awake()
     {
@@ -145,5 +147,21 @@ public class GameManager : NetworkBehaviour
             if (HasStateAuthority) _finishTxt.color = Color.red;
             else _finishTxt.color = Color.green;
         }
+    }
+
+    public int SpawnPoints()
+    {
+        Debug.Log("Last Init" + _lastSpawn);
+        _spawn = UnityEngine.Random.Range(0, 2);
+        Debug.Log("Spawn:" + _spawn);
+        if (_spawn == _lastSpawn)
+        {
+            if (_spawn == 1) _spawn = 0;
+            else _spawn = 1;
+        }
+
+        _lastSpawn = _spawn;
+        Debug.Log("Last Finish" + _lastSpawn);
+        return _spawn;
     }
 }
