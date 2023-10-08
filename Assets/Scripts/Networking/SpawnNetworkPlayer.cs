@@ -22,22 +22,16 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
     {
         _runner = GetComponent<NetworkRunner>();
     }
-
     void Update()
     {
         if (_startGame) return;
         StartGameOk();
     }
-
     public void OnConnectedToServer(NetworkRunner runner) //Spawn del Player
     {
         if (runner.Topology == SimulationConfig.Topologies.Shared)
         {
-            var spawnPoint = GameManager.Instance.SpawnPoints();
-
-            Debug.Log("SpawnNetwork:" + spawnPoint);
-
-            var localPlayer = runner.Spawn(_playerPrefab, spawnPoints[spawnPoint].position, spawnPoints[spawnPoint].rotation, runner.LocalPlayer);
+            var localPlayer = runner.Spawn(_playerPrefab, spawnPoints[runner.SessionInfo.PlayerCount - 1].position, Quaternion.identity, runner.LocalPlayer);
             _characterController = localPlayer.GetComponent<SharedMode.NetworkCharacterController>();
             
             var localCamera = _characterController.GetComponentInChildren<CinemachineFreeLook>();
@@ -50,8 +44,6 @@ public class SpawnNetworkPlayer : MonoBehaviour, INetworkRunnerCallbacks
 
         input.Set(_characterController.GetLocalInputs()); //Si lo tengo, llamo al metodo para obtener los inputs
     }
-
-
     bool StartGameOk()
     {
         if (GameManager.Instance.CheckConnectedPlayers())

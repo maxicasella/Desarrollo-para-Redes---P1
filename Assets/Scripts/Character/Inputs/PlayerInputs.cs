@@ -186,13 +186,21 @@ public class PlayerInputs : NetworkBehaviour
     void RPC_TakeDamage(float dmg)
     {
         if (aura) return;
-        _isDamage = true;
         _life -= dmg;
+        StartCoroutine(DamageParticles());
         _damageAudio.Play();
 
         OnLifeUpdate(_life / _maxLife);
-        _isDamage = false;
         if (_life <= 0) Dead();
+    }
+
+    IEnumerator DamageParticles()
+    {
+        _isDamage = true;
+
+        yield return new WaitForSeconds(0.01f);
+
+        _isDamage = false;
     }
 
     static void OnDamage(Changed<PlayerInputs> changed)

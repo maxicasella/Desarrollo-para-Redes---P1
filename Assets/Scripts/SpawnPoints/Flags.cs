@@ -24,10 +24,9 @@ public class Flags : NetworkBehaviour
 
         var player = other.GetComponent<PlayerInputs>();
 
+        StartCoroutine(SpawnParticles());
         GameManager.Instance.AddScore(player, _score);
-     
         _spawner.isCaptured = true;
-        _isCaptured = true;
         Runner.Despawn(Object);
     }
 
@@ -41,6 +40,13 @@ public class Flags : NetworkBehaviour
         if (!old && update) changed.Behaviour.Runner.Spawn(changed.Behaviour._captureParticles, changed.Behaviour.transform.position, changed.Behaviour.transform.rotation); ;
     }
 
+    IEnumerator SpawnParticles()
+    {
+        _isCaptured = true;
 
+        yield return new WaitForSeconds(0.01f);
+
+        _isCaptured = false;
+    }
 
 }
