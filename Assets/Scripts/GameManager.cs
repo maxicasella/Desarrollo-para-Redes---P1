@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
@@ -83,6 +83,16 @@ public class GameManager : NetworkBehaviour
         _tempScore = 0;
     }
 
+    public void DeadPlayer(PlayerInputs player, int score)
+    {
+        _tempScore += score;
+
+        if (player.HasStateAuthority) _proxyScore += _tempScore;
+        else _localScore += _tempScore;
+
+        _tempScore = 0;
+    }
+
     void PrintScore ()
     {
         _localScoreTxt.text = _localScore.ToString();
@@ -117,15 +127,13 @@ public class GameManager : NetworkBehaviour
             {
                 _finishCanvas.SetActive(true);
                 _finishTxt.text = "Team A Win";
-                if (HasStateAuthority) _finishTxt.color = Color.green;
-                else _finishTxt.color = Color.red;
+                _finishTxt.color = Color.red;
             }
             else
             {
                 _finishCanvas.SetActive(true);
                 _finishTxt.text = "Team B Win";
-                if (HasStateAuthority) _finishTxt.color = Color.red;
-                else _finishTxt.color = Color.green;
+                _finishTxt.color = Color.blue;
             }
         }
 
@@ -135,8 +143,7 @@ public class GameManager : NetworkBehaviour
             _timerTxt.gameObject.SetActive(false);
             _finishCanvas.SetActive(true);
             _finishTxt.text = "Team A Win";
-            if (HasStateAuthority) _finishTxt.color = Color.green;
-            else _finishTxt.color = Color.red;
+            _finishTxt.color = Color.red;
         }
         else if (_proxyScore >= _maxScore && _localScore < _maxScore)
         {
@@ -144,8 +151,7 @@ public class GameManager : NetworkBehaviour
             _timerTxt.gameObject.SetActive(false);
             _finishCanvas.SetActive(true);
             _finishTxt.text = "Team B Win";
-            if (HasStateAuthority) _finishTxt.color = Color.red;
-            else _finishTxt.color = Color.green;
+            _finishTxt.color = Color.blue;
         }
     }
 }

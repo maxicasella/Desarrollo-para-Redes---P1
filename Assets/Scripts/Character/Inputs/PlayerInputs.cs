@@ -180,6 +180,7 @@ public class PlayerInputs : NetworkBehaviour
     public void TakeDamage(float dmg)
     {
         RPC_TakeDamage(dmg);
+        StartCoroutine(DamageParticles());
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -187,7 +188,6 @@ public class PlayerInputs : NetworkBehaviour
     {
         if (aura) return;
         _life -= dmg;
-        StartCoroutine(DamageParticles());
         _damageAudio.Play();
 
         OnLifeUpdate(_life / _maxLife);
@@ -220,7 +220,7 @@ public class PlayerInputs : NetworkBehaviour
 
     void Dead()
     {
-        GameManager.Instance.AddScore(this, _deadScore);
+        GameManager.Instance.DeadPlayer(this, _deadScore);
         //Runner.Shutdown();
     }
 

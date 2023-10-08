@@ -23,10 +23,9 @@ public class Flags : NetworkBehaviour
         if (!Object || !Object.HasStateAuthority) return;
 
         var player = other.GetComponent<PlayerInputs>();
-
-        StartCoroutine(SpawnParticles());
-        GameManager.Instance.AddScore(player, _score);
+        _isCaptured = true;
         _spawner.isCaptured = true;
+        GameManager.Instance.AddScore(player, _score);
         Runner.Despawn(Object);
     }
 
@@ -39,14 +38,4 @@ public class Flags : NetworkBehaviour
 
         if (!old && update) changed.Behaviour.Runner.Spawn(changed.Behaviour._captureParticles, changed.Behaviour.transform.position, changed.Behaviour.transform.rotation); ;
     }
-
-    IEnumerator SpawnParticles()
-    {
-        _isCaptured = true;
-
-        yield return new WaitForSeconds(0.01f);
-
-        _isCaptured = false;
-    }
-
 }
