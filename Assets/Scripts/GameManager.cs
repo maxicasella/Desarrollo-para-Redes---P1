@@ -126,31 +126,31 @@ public class GameManager : NetworkBehaviour
             if (_localScore > _proxyScore)
             {
                 _finishCanvas.SetActive(true);
-                _finishTxt.text = "Team A Win";
+                _finishTxt.text = "Team A Wins";
                 _finishTxt.color = Color.red;
             }
             else
             {
                 _finishCanvas.SetActive(true);
-                _finishTxt.text = "Team B Win";
+                _finishTxt.text = "Team B Wins";
                 _finishTxt.color = Color.blue;
             }
         }
 
-        if (_localScore >= _maxScore && _proxyScore < _maxScore)
+        if (_localScore >= _maxScore)
         {
             Time.timeScale = 0;
             _timerTxt.gameObject.SetActive(false);
             _finishCanvas.SetActive(true);
-            _finishTxt.text = "Team A Win";
+            _finishTxt.text = "Team A Wins";
             _finishTxt.color = Color.red;
         }
-        else if (_proxyScore >= _maxScore && _localScore < _maxScore)
+        else if (_proxyScore >= _maxScore)
         {
             Time.timeScale = 0;
             _timerTxt.gameObject.SetActive(false);
             _finishCanvas.SetActive(true);
-            _finishTxt.text = "Team B Win";
+            _finishTxt.text = "Team B Wins";
             _finishTxt.color = Color.blue;
         }
     }

@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 67461217}
   - component: {fileID: 67461219}
   - component: {fileID: 67461218}
+  - component: {fileID: 67461220}
   m_Layer: 5
   m_Name: TimeTXT
   m_TagString: Untagged
@@ -656,6 +657,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67461216}
   m_CullTransparentMesh: 1
+--- !u!114 &67461220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67461216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 9574b3c9b2c04220a1e6eb9e2efa23e2
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &67770934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6766,6 +6790,7 @@ GameObject:
   - component: {fileID: 444040235}
   - component: {fileID: 444040234}
   - component: {fileID: 444040233}
+  - component: {fileID: 444040237}
   m_Layer: 5
   m_Name: Network Canvas
   m_TagString: Untagged
@@ -6861,6 +6886,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &444040237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444040232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 534d804d77814cb9a8d6d07917417dc4
+  NestedObjects:
+  - {fileID: 67461220}
+  - {fileID: 2014816404}
+  - {fileID: 1607034833}
+  - {fileID: 1638887410}
+  - {fileID: 1393727678}
+  - {fileID: 1484778328}
+  - {fileID: 1134588655}
+  - {fileID: 942591750}
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1001 &446255011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24261,8 +24317,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603765064}
-  m_LocalRotation: {x: 0.045399524, y: 0.12647133, z: -0.0057943864, w: 0.9909139}
-  m_LocalPosition: {x: -1.096208, y: 2.5, z: -4.878353}
+  m_LocalRotation: {x: 0.20106587, y: 0, z: 0, w: 0.9795777}
+  m_LocalPosition: {x: 0, y: 39.4, z: -69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

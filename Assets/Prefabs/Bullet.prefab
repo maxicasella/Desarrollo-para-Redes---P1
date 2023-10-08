@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _speed: 20
-  _lifetime: 0.1
+  _lifetime: 0.3
   __dmg: 20
   _explotion: {fileID: 5428093997588972281}
 --- !u!65 &105855699041848554
