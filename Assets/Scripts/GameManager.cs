@@ -83,13 +83,13 @@ public class GameManager : NetworkBehaviour
         _tempScore = 0;
     }
 
-    public void DeadPlayer(PlayerInputs player, int score)
+    public void DeadPlayer(int player, int score)
     {
         _tempScore += score;
 
-        if (player.HasStateAuthority) _proxyScore += _tempScore;
-        else _localScore += _tempScore;
-
+        if(player == 1) _proxyScore += _tempScore;
+        else if(player==2)_localScore += _tempScore;
+ 
         _tempScore = 0;
     }
 

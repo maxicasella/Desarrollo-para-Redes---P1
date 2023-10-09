@@ -37,7 +37,6 @@ public class PlayerInputs : NetworkBehaviour
     NetworkInputsData _inputs;
     public bool aura;
    
-
     public event Action<float> OnLifeUpdate = delegate { };
     public event Action PlayerDead = delegate { };
 
@@ -54,6 +53,8 @@ public class PlayerInputs : NetworkBehaviour
     bool _isWalking;
     float _lastFiringTime;
 
+    int _playerCount;
+
     void Start()
     {
         _isWalking = false;
@@ -61,6 +62,11 @@ public class PlayerInputs : NetworkBehaviour
 
     public override void Spawned()
     {
+        Debug.Log(Object.HasStateAuthority);
+        _playerCount = Runner.SessionInfo.PlayerCount;
+
+        Debug.Log(_playerCount);
+
         GameManager.Instance.AddPlayers(this);
         _maxLife = 200;
         _life = _maxLife;
@@ -68,7 +74,7 @@ public class PlayerInputs : NetworkBehaviour
     }
     public override void FixedUpdateNetwork()
     {
-        if(GetInput(out _inputs))
+        if (GetInput(out _inputs))
         {
             if (_inputs.isFiring) Shoot();
             if (_inputs.isReloading) Reload();
@@ -183,7 +189,7 @@ public class PlayerInputs : NetworkBehaviour
         StartCoroutine(DamageParticles());
     }
 
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     void RPC_TakeDamage(float dmg)
     {
         if (aura) return;
@@ -220,10 +226,10 @@ public class PlayerInputs : NetworkBehaviour
 
     void Dead()
     {
-        GameManager.Instance.DeadPlayer(this, _deadScore);
+        Debug.Log("Dead:" + _playerCount);
+          GameManager.Instance.DeadPlayer(_playerCount, _deadScore);
         //Runner.Shutdown();
     }
-
     public float LocalLife()
     {
          return _life;
